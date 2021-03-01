@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../Personal_Learning /Beginner_Javascript/beginner-javascript"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "testServer"
+	}
+}
