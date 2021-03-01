@@ -1,4 +1,3 @@
-//const animeInput = document.getElementById('inputBox').value; 
 const baseUrl = `https://api.jikan.moe/v3/search/anime?q=`;
 const animeTitle = document.querySelector('.animeTitle');
 const animeSypnosis = document.querySelector('.animeSypnosis');
@@ -8,6 +7,8 @@ function handleError(err) {
     console.log('Oh NO');
     console.log(err);
   }
+
+ //Pulls the first results and displays the name, description, and img on click from a list of results 
 function clickButton() { 
     const inputText = document.getElementById('inputBox').value;
     const animeSearch = fetch(baseUrl + inputText); 
@@ -23,3 +24,13 @@ function clickButton() {
     }).catch(handleError)
 }
 
+//Function to submit the search input with the return key
+function sendReturnKey() {
+    document.getElementById("inputBox").addEventListener("keyup", function(event){
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("searchName").click();
+        }
+    });
+}
+sendReturnKey();
