@@ -1,7 +1,8 @@
-const baseUrl = `https://api.jikan.moe/v3/search/anime?q=`;
+const baseUrl = 'https://api.jikan.moe/v3/search/anime?q=';
 const animeTitle = document.querySelector('.animeTitle');
 const animeSypnosis = document.querySelector('.animeSypnosis');
-const createAnimeImg = document.createElement('img')
+const createAnimeImg = document.createElement('img');
+const animeGrid = document.querySelector('.anime');
 
 function handleError(err) {
     console.log('Oh NO');
@@ -16,15 +17,32 @@ function clickButton() {
         return response.json();
     }).then(response => {
         console.log(response.results[0].title);
+        console.log(response.results);
         animeTitle.textContent = `${response.results[0].title}`
         animeSypnosis.textContent = `${response.results[0].synopsis}`
         createAnimeImg.src = `${response.results[0].image_url}`
         document.body.appendChild(createAnimeImg);
+        displayListOfAnime(response.results);
 
     }).catch(handleError)
 }
 
+function displayListOfAnime(anime){
+    console.log('Creating HTML');
+    console.log(anime);
+    const html = anime.map(anime => {
+        return `<div> 
+            <h2>${anime.title} </h2>
+            <p>${anime.synopsis} </p>
+            <img src ="${anime.image_url}">
+        </div>`
+    });
+    console.log(html);
+    animeGrid.innerHTML = html.join('');
+}
+
 //Function to submit the search input with the return key
+//I can refactor this
 function sendReturnKey() {
     document.getElementById("inputBox").addEventListener("keyup", function(event){
         event.preventDefault();
