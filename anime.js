@@ -18,10 +18,12 @@ function clickButton() {
     }).then(response => {
         console.log(response.results[0].title);
         console.log(response.results);
+        /*
         animeTitle.textContent = `${response.results[0].title}`
         animeSypnosis.textContent = `${response.results[0].synopsis}`
         createAnimeImg.src = `${response.results[0].image_url}`
         document.body.appendChild(createAnimeImg);
+        */
         displayListOfAnime(response.results);
 
     }).catch(handleError)
